@@ -1,0 +1,57 @@
+
+header {
+    background-color: lavender;
+}
+
+footer {
+    background-color: salmon;
+    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 5px;
+    width: 100%;
+}
+
+.wide-button {
+    width: 10ch;
+}
+
+#number-a {
+    background-color: lightblue;
+}
+
+#number-b {
+    background-color: lightcoral;
+}
+
+input[type="number"] {
+    font-size: x-large;
+}
+
+section{
+    border: 2px solid royalblue;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 3fr 1fr 2fr;
+    gap: 10px;
+}
+
+li:nth-child(1)::after {
+    content: "<===";
+}
+
+/*.wide-button::before {*/
+/*    content: '>';*/
+/*}*/
+
+button:hover {
+    background-color: cyan;
+    cursor: pointer;
+}
+
+input:focus {
+    border: 3px solid cyan;
+}

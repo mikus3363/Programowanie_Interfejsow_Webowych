@@ -1,0 +1,42 @@
+
+body {
+    background-color: #e8e0ca; /* Jaśniejszy piaskowy kolor */
+    margin: 0; /* Usunięcie domyślnych marginesów */
+    font-family: Arial, sans-serif; /* Ustawienie czcionki */
+}
+
+.topnav {
+    background-color: #C2B280; /* Kolor piaskowy */
+    height: 70px; /* Zwiększona wysokość paska */
+    display: flex; /* Układ poziomy elementów */
+    justify-content: space-between; /* Rozdzielenie elementów na lewą i prawą stronę */
+    align-items: center; /* Wyśrodkowanie w pionie */
+    padding: 0 20px; /* Odstępy od lewej i prawej strony */
+}
+
+/* Stylowanie przycisków w pasku menu */
+.menu-button {
+    background-color: #b09f6a; /* Kolor piaskowy (dopasowany do tła) */
+    border: none; /* Usunięcie obramowania */
+    color: black; /* Kolor tekstu */
+    padding: 15px 30px; /* Rozszerzone przyciski */
+    font-size: 18px; /* Większy rozmiar tekstu */
+    cursor: pointer; /* Zmiana kursora na wskaźnik */
+}
+
+.menu-button:hover {
+    background-color: #ab9a6a; /* Jaśniejszy odcień piaskowego koloru po najechaniu myszką */
+}
+
+.menu-button:active {
+    background-color: #A69360; /* Ciemniejszy odcień po kliknięciu */
+}
+
+/*!* Stylowanie sekcji z przyciskami po prawej stronie *!*/
+/*.menu-right {*/
+/*    display: flex;*/
+/*}*/
+
+.menu-right .menu-button {
+    margin-left: 10px; /* Odstęp między przyciskami po prawej stronie */
+}
