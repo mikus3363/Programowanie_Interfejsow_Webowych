@@ -1,42 +1,93 @@
 
 body {
-    background-color: #e8e0ca; /* Jaśniejszy piaskowy kolor */
-    margin: 0; /* Usunięcie domyślnych marginesów */
+    background-color: #e8e0ca;
+    margin: 0; /* usunięcie domyślnych marginesów */
     font-family: Arial, sans-serif; /* Ustawienie czcionki */
 }
 
-.topnav {
-    background-color: #C2B280; /* Kolor piaskowy */
-    height: 70px; /* Zwiększona wysokość paska */
-    display: flex; /* Układ poziomy elementów */
-    justify-content: space-between; /* Rozdzielenie elementów na lewą i prawą stronę */
-    align-items: center; /* Wyśrodkowanie w pionie */
-    padding: 0 20px; /* Odstępy od lewej i prawej strony */
+.top-panel {
+    background-color: #C2B280;
+    height: 70px; /* wysokość paska */
+    display: flex; /* układ poziomy */
+    justify-content: space-between; /* rozdzielenie na lewą i prawą stronę elementów */
+    align-items: center; /* wyśrodkowanie w pionie */
+    padding: 0 20px; /* Odstępy od lewej i prawej */
 }
 
-/* Stylowanie przycisków w pasku menu */
 .menu-button {
-    background-color: #b09f6a; /* Kolor piaskowy (dopasowany do tła) */
-    border: none; /* Usunięcie obramowania */
-    color: black; /* Kolor tekstu */
-    padding: 15px 30px; /* Rozszerzone przyciski */
-    font-size: 18px; /* Większy rozmiar tekstu */
-    cursor: pointer; /* Zmiana kursora na wskaźnik */
+    background-color: #b09f6a;
+    border: none; /* usunięcie obramowania */
+    color: black; /* kolor tekstu */
+    padding: 15px 30px; /* rozszerzone przyciski */
+    font-size: 18px; /* większy rozmiar tekstu */
+    cursor: pointer; /* zmiana kursora na wskaźnik */
 }
 
 .menu-button:hover {
-    background-color: #ab9a6a; /* Jaśniejszy odcień piaskowego koloru po najechaniu myszką */
+    background-color: #ab9a6a; /* po najechaniu myszką */
 }
 
 .menu-button:active {
-    background-color: #A69360; /* Ciemniejszy odcień po kliknięciu */
+    background-color: #A69360; /* po kliknięciu */
 }
-
-/*!* Stylowanie sekcji z przyciskami po prawej stronie *!*/
-/*.menu-right {*/
-/*    display: flex;*/
-/*}*/
 
 .menu-right .menu-button {
     margin-left: 10px; /* Odstęp między przyciskami po prawej stronie */
+}
+
+.filter-panel {
+    display: flex; /* użycie flex */
+    justify-content: center; /* wyśrodkowanie poziome */
+    align-items: center; /* wyśrodkowanie pionowe */
+    margin-bottom: 20px; /* odstęp dolny 20px */
+    flex-direction: row; /* Wszystkie elementy w jednej linii */
+    gap: 15px; /* Odstęp między elementami */
+}
+
+.filter {
+    gap: 15px; /* odstęp między elementami */
+    padding: 10px; /* odstęp wokół elementami */
+    font-size: 18px; /* większy rozmiar tekstu */
+}
+
+.filter input{
+    padding: 10px 25px; /* większe pole tekstów */
+}
+
+.filter select{
+    padding: 10px 5px; /* większe pole wyborów */
+}
+
+.add-book-button {
+    margin-left: 200px; /* przesunięcie przycisku na prawą stronę */
+    padding: 10px 20px; /* padding wokół przycisku */
+    font-size: 18px; /* rozmiar czcionki */
+    cursor: pointer; /* kursor wskazujący na możliwość kliknięcia */
+}
+
+.books-panel {
+    display: grid; /* użycie grida do rozmieszczania */
+    grid-template-columns: repeat(3, 1fr); /* trzy kolumny o równej szerokości */
+    gap: 20px; /* odstępy między książkami */
+    justify-content: center; /* wyśrodkowanie treści */
+    padding: 20px; /* odstęp wokół elementami */
+}
+
+.book {
+    border: 1px solid black; /* ramka wokół każdej książki */
+    padding: 10px; /* odstęp wokół elementami */
+    text-align: center; /* wyśrodkowanie tekstu */
+}
+
+.add-books {
+    display: flex;
+    justify-content: center; /* wyśrodkowanie zawartości */
+    align-items: center; /* wyśrodkowanie zawartości w pionie */
+    flex-direction: column;
+    gap: 20px;
+}
+
+.adder {
+    padding: 10px 25px; /* większe pole przycisku Dodaj */
+    cursor: pointer; /* kursor wskazujący na możliwość kliknięcia */
 }

@@ -4,17 +4,129 @@
     <meta charset="UTF-8">
     <title>Księgarnia</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function filterBooks() {
+            // pobieramy wartości wszystkich filtrów i do porównania zmieniamy te gdzie wpisujemy tekst na małe litery
+            let searchQuery = document.getElementById("searchInput").value.toLowerCase();
+            let priceFilter = document.getElementById("priceFilter").value;
+            let coverFilter = document.getElementById("coverFilter").value;
+            let pagesFilter = document.getElementById("pagesFilter").value;
+            let authorFilter = document.getElementById("authorFilter").value.toLowerCase();
+            let descriptionFilter = document.getElementById("descriptionFilter").value.toLowerCase();
+
+            let books = document.querySelectorAll(".book"); // pobieramy wszystkie elementy klas book
+
+            books.forEach(book => { // iteracja po każdym elemencie klasy book
+                // pobieramy atrybuty przypisane do klasy book, te tekstowe zamieniamy na małe litery dla porównania
+                let title = book.getAttribute("title").toLowerCase();
+                let price = book.getAttribute("price");
+                let cover = book.getAttribute("cover");
+                let pages = book.getAttribute("pages");
+                let author = book.getAttribute("author").toLowerCase();
+                let description = book.getAttribute("description").toLowerCase();
+
+                if ((searchQuery === "" || title.includes(searchQuery)) &&
+                    (priceFilter === "all" || parseFloat(price) <= parseFloat(priceFilter)) &&
+                    (coverFilter === "all" || cover === coverFilter) &&
+                    (pagesFilter === "all" || parseInt(pages) >= parseInt(pagesFilter)) &&
+                    (authorFilter === "" || author.includes(authorFilter)) &&
+                    (descriptionFilter === "" || description.includes(descriptionFilter))) { // wykonanie jeżeli dany atrybut spełnia domyślne wartości filtrów lub gdy atrybut zawiera się w filtrze
+                    book.style.display = "block"; // jeżeli spełni się warunek książka pozostaje wyświetlona
+                } else {
+                    book.style.display = "none"; // jeżeli nie to przestaje być widoczna
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <main>
-        <div class="topnav">
+        <div class="top-panel">
             <div class="menu-left">
                 <button class="menu-button">Strona główna</button>
             </div>
 
             <div class="menu-right">
-                <button class="menu-button" onclick="window.location.href='index2.html';">Logowanie</button>
+                <button class="menu-button">Zaloguj się</button>
                 <button class="menu-button">Koszyk</button>
+            </div>
+        </div>
+
+        <div class="filter-panel">
+            <div class="filter">
+
+                <input type="search" id="searchInput" placeholder="Wyszukaj książkę..." onkeyup="filterBooks()"/>
+
+                <select id="priceFilter" onchange="filterBooks()">
+                    <option value="all">Cena - Wszystkie</option>
+                    <option value="50">Do 50 zł</option>
+                    <option value="100">Do 100 zł</option>
+                </select>
+
+                <select id="coverFilter" onchange="filterBooks()">
+                    <option value="all">Okładka - Wszystkie</option>
+                    <option value="twarda">Twarda</option>
+                    <option value="miękka">Miękka</option>
+                </select>
+
+                <select id="pagesFilter" onchange="filterBooks()">
+                    <option value="all">Ilość stron - Wszystkie</option>
+                    <option value="200">200+</option>
+                    <option value="400">400+</option>
+                </select>
+
+                <input type="text" id="authorFilter" placeholder="Autor..." onkeyup="filterBooks()"/>
+
+                <input type="text" id="descriptionFilter" placeholder="Słowo w opisie..." onkeyup="filterBooks()"/>
+
+                <button class="add-book-button" onclick="window.location.href='index2.html';">Dodaj książkę</button>
+            </div>
+        </div>
+
+        <div class="books-panel">
+            <div class="book" title="Wiedźmin" price="80" cover="twarda" pages="350" author="Andrzej Sapkowski" description="Fantastyczna saga o Wiedźminie">
+                <h3>Wiedźmin</h3>
+                <p>Autor: Andrzej Sapkowski</p>
+                <p>Cena: 80 zł</p>
+                <p>Okładka: Twarda</p>
+                <p>Ilość stron: 350</p>
+                <p>Opis: Fantastyczna saga o Wiedźminie</p>
+            </div>
+
+            <div class="book" title="Harry Potter" price="45" cover="miękka" pages="500" author="J.K. Rowling" description="Magiczna przygoda młodego czarodzieja">
+                <h3>Harry Potter</h3>
+                <p>Autor: J.K. Rowling</p>
+                <p>Cena: 45 zł</p>
+                <p>Okładka: Miękka</p>
+                <p>Ilość stron: 500</p>
+                <p>Opis: Magiczna przygoda młodego czarodzieja</p>
+            </div>
+
+            <div class="book" title="Zbrodnia i kara" price="30" cover="twarda" pages="400" author="Fiodor Dostojewski" description="Klasyczna powieść psychologiczna">
+                <h3>Zbrodnia i kara</h3>
+                <p>Autor: Fiodor Dostojewski</p>
+                <p>Cena: 30 zł</p>
+                <p>Okładka: Twarda</p>
+                <p>Ilość stron: 400</p>
+                <p>Opis: Klasyczna powieść psychologiczna</p>
+            </div>
+
+            <div class="book" title="W pustyni i w puszczy" price="35" cover="twarda" pages="344" author="Henryk Sienkiewicz" description="Niezpaomniana przygoda Stasia i Neli">
+                <h3>W pustyni i w puszczy</h3>
+                <p>Autor: Henryk Sienkiewicz</p>
+                <p>Cena: 35 zł</p>
+                <p>Okładka: Twarda</p>
+                <p>Ilość stron: 344</p>
+                <p>Niezpaomniana przygoda Stasia i Neli</p>
+            </div>
+
+            <div class="book" title="Hobbit" price="60" cover="miękka" pages="320" author="J.R.R Tolkien" description="Fantastyczna przygoda Bilbo Bagginsa">
+                <h3>Hobbit</h3>
+                <p>J.R.R Tolkien</p>
+                <p>Cena: 60 zł</p>
+                <p>Okładka: Miękka</p>
+                <p>Ilość stron: 320</p>
+                <p>Opis: Fantastyczna przygoda Bilbo Bagginsa</p>
             </div>
         </div>
     </main>
