@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista do zrobienia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Lista do zrobienia</h1>
+
+    <div>
+        <input type="text" id="todo-input" placeholder="Wpisz nowe zadanie...">
+        <button id="add-button">Dodaj</button>
+        <button onclick="returnDelete()">Cofnij usunięcie</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+
+    <div id="confirm" class="confirm">
+        <div class="confirm-content">
+            <p id="confirm-text">Czy na pewno chcesz usunąć zadanie?</p>
+            <button id="confirm_accept-delete">Tak</button>
+            <button id="confirm_cancel-delete">Anuluj</button>
+        </div>
+    </div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
