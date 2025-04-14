@@ -10,15 +10,21 @@ h1 {
     color: #007bff;
 }
 
-#todo-input {
-    width: 300px;
+#todo-input, #new-list-name {
+    width: 200px;
     padding: 10px;
     margin-right: 10px;
-    border-radius: 5px;
+    border-radius: 5px; /* zaokraglenie rogow */
     border: 1px solid #ccc;
 }
 
-#add-button, button {
+#list-select {
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#add-button,#add-list-button, button {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
@@ -36,12 +42,15 @@ button {
     color: white;
 }
 
-button:hover {
-    background-color: #155724;
+button.add-btn:hover {
+    background-color: #218838;
+}
+button.delete-button:hover {
+    background-color: darkred;
 }
 
 ul {
-    list-style-type: none;
+    list-style-type: none; /* usuwa domyslne punkty listy */
     padding: 0;
 }
 
@@ -53,11 +62,11 @@ li {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* cien pod zadaniem */
 }
 
 .task-text {
-    flex-grow: 1;
+    flex-grow: 1; /* pozwala tekstowi zajmowac cala dostępna przestrzen */
 }
 
 .done .task-text {
@@ -95,7 +104,7 @@ li {
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 999; /* warstwa ponad innymi elementami */
 }
 
 .confirm-content {
@@ -108,4 +117,21 @@ li {
 
 .confirm-content button {
     margin: 10px;
+}
+
+.todo-list.hidden {
+    display: none;
+}
+
+.list-header {
+    cursor: pointer;
+    background-color: #4ff7ac;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.list-wrapper {
+    margin-bottom: 20px;
 }

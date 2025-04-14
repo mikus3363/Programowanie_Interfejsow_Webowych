@@ -7,17 +7,23 @@
 </head>
 <body>
 
-<h1>Lista do zrobienia</h1>
+    <h1>Listy do zrobienia</h1>  <!-- nagłówek główny strony -->
 
-    <div>
+    <div> <!-- kontener dla pola tekstowego, wyboru listy i przycisków -->
         <input type="text" id="todo-input" placeholder="Wpisz nowe zadanie...">
+        <select id="list-select"></select>
         <button id="add-button">Dodaj</button>
         <button onclick="returnDelete()">Cofnij usunięcie</button>
     </div>
 
-    <ul id="todo-list"></ul>
+    <div id="lists-container"></div> <!-- kontener z listami zadań -->
 
-    <div id="confirm" class="confirm">
+    <div> <!-- kontener dla tworzenia nowej listy -->
+        <input type="text" id="new-list-name" placeholder="Nowa lista do zrobienia...">
+        <button id="add-list-button">Dodaj liste</button>
+    </div>
+
+    <div id="confirm" class="confirm"> <!-- kontener do potwierdzania usunięcia zadania -->
         <div class="confirm-content">
             <p id="confirm-text">Czy na pewno chcesz usunąć zadanie?</p>
             <button id="confirm_accept-delete">Tak</button>
@@ -25,7 +31,7 @@
         </div>
     </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
