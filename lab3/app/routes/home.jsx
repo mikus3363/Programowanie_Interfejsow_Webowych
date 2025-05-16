@@ -45,41 +45,39 @@ export default function HomePage() {
                 </button>
             )}
 
-            {!user && (
-                <p style={{ color: "gray" }}>
-                    Musisz się zalogować, aby zobaczyć i dodać książki.
-                </p>
+            {!user ? (
+                <p>Musisz się zalogować, aby zobaczyć i dodać książki.</p>
+            ) : (
+                <ul>
+                    {filteredBooks.map((book) => (
+                        <li key={book.id}>
+                            {editingId === book.id ? (
+                                <>
+                                    <input
+                                        value={editedTitle}
+                                        onChange={(e) => setEditedTitle(e.target.value)}
+                                    />
+                                    <input
+                                        value={editedAuthor}
+                                        onChange={(e) => setEditedAuthor(e.target.value)}
+                                    />
+                                    <button onClick={() => handleSave(book.id)}>Zapisz</button>
+                                </>
+                            ) : (
+                                <>
+                                    {book.title} - {book.author}
+                                    {user && user.uid === book.ownerId && (
+                                        <>
+                                            <button onClick={() => handleEdit(book)}>Edytuj</button>
+                                            <button onClick={() => deleteBook(book.id)}>Usuń</button>
+                                        </>
+                                    )}
+                                </>
+                            )}
+                        </li>
+                    ))}
+                </ul>
             )}
-
-            <ul>
-                {filteredBooks.map((book) => (
-                    <li key={book.id}>
-                        {editingId === book.id ? (
-                            <>
-                                <input
-                                    value={editedTitle}
-                                    onChange={(e) => setEditedTitle(e.target.value)}
-                                />
-                                <input
-                                    value={editedAuthor}
-                                    onChange={(e) => setEditedAuthor(e.target.value)}
-                                />
-                                <button onClick={() => handleSave(book.id)}>Zapisz</button>
-                            </>
-                        ) : (
-                            <>
-                                {book.title} - {book.author}
-                                {user && user.uid === book.ownerId && (
-                                    <>
-                                        <button onClick={() => handleEdit(book)}>Edytuj</button>
-                                        <button onClick={() => deleteBook(book.id)}>Usuń</button>
-                                    </>
-                                )}
-                            </>
-                        )}
-                    </li>
-                ))}
-            </ul>
         </div>
     );
 }

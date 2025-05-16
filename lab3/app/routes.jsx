@@ -11,4 +11,8 @@ export default [
         path: "/login",
         file: "./routes/login.jsx",
     },
+    {
+        path: "/register",
+        file: "./routes/register.jsx",
+    },
 ];

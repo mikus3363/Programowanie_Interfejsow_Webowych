@@ -1,8 +1,8 @@
-
 import { useState } from "react";
 import { useBooks } from "../BooksContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+
 
 export default function NewPage() {
     const { addBook } = useBooks();
@@ -18,6 +18,8 @@ export default function NewPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         await addBook(title, author);
+        setTitle("");
+        setAuthor("");
         navigate("/");
     };
 
