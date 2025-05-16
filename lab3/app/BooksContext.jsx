@@ -1,26 +1,51 @@
-
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { db } from "./firebase";
+import {collection, addDoc, onSnapshot, deleteDoc, updateDoc, doc, query, orderBy} from "firebase/firestore";
+import { useAuth } from "./AuthContext";
 
 const BooksContext = createContext();
 
 export function BooksProvider({ children }) {
-    const [books, setBooks] = useState([
-        { id: 1, title: "Wiedzmin", author: "Andrzej Sapkowski" },
-        { id: 2, title: "Hobbit", author: "J.R.R. Tolkien" },
-        { id: 3, title: "Maly Ksiaze", author: "Antoine de Saint-Exupery" },
-        { id: 4, title: "Krzyzacy", author: "Henryk Sienkiewicz" },
-    ]);
+    const [books, setBooks] = useState([]);
+    const { user } = useAuth();
 
-    const addBook = (title, author) => {
-        setBooks([...books, { id: Date.now(), title, author }]);
+    useEffect(() => {
+        const q = query(collection(db, "books"), orderBy("title"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const data = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setBooks(data);
+        });
+        return () => unsubscribe();
+    }, []);
+
+    const addBook = async (title, author) => {
+        if (!user) {
+            console.warn("Uzytkownik niezalogowany - ksiazka nie zostanie zapisana!");
+            return;
+        }
+
+        const newBook = {
+            title,
+            author,
+            ownerId: user.uid,
+        };
+
+        console.log("Zapisuje ksiazke do Firestore:", newBook);
+
+        await addDoc(collection(db, "books"), newBook);
     };
 
-    const editBook = (id, updatedBook) => {
-        setBooks(books.map((book) => (book.id === id ? { ...book, ...updatedBook } : book)));
+    const editBook = async (id, updatedBook) => {
+        const ref = doc(db, "books", id);
+        await updateDoc(ref, updatedBook);
     };
 
-    const deleteBook = (id) => {
-        setBooks(books.filter((book) => book.id !== id));
+    const deleteBook = async (id) => {
+        const ref = doc(db, "books", id);
+        await deleteDoc(ref);
     };
 
     return (
