@@ -12,7 +12,8 @@ export default function HomePage() {
     const [showOnlyMine, setShowOnlyMine] = useState(false); // toggle
 
     const filteredBooks = books.filter((book) => {
-        const matchesSearch = book.title.toLowerCase().includes(search.toLowerCase());
+        const lowerSearch = search.toLowerCase();
+        const matchesSearch = book.title.toLowerCase().includes(lowerSearch) || book.author.toLowerCase().includes(lowerSearch);
         const isMine = !showOnlyMine || (user && book.ownerId === user.uid);
         return matchesSearch && isMine;
     });
